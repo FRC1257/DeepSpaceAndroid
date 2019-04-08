@@ -1,0 +1,1865 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_material_light"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/title_home"
+        android:textColor="@color/text_color_primary"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/sendLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintTop_toTopOf="@+id/container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sendMessage"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="24dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="Instructions"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Before you use this app, please ensure that internet is enabled. Depending if you are pit scouting or objective scouting, you will use either the objective or pit scouting parts of this app."
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="For objective scouting, fill out each field, then submit. The top category corresponds to general match information, followed by the sandstorm category - this category pertains exclusively to sandstorm information (so any hatch or cargo scored does not get counted below)."
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="The next two sections (hatch and cargo) pertain specifically to hatches and cargo scored or dropped by the robot during the 135-second period following sandstorm. Whenever hatches or cargo are scored or dropped, select the appropriate button to mark this. Below this is the climbing category - just mark the HAB level to which the robot climbs and helps/is helped by another robot when climbing."
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="This works the same way while pit scouting, just make sure to ask the appropriate questions for each field to the team being pit scouted."
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="When both objective and subjective scouting, you will see reset and submit buttons. The reset button works the same way in both objective and pit scouting - tap it once to reset, and the button will turn into a confirmation button. Tap it again to reset, or tap any other field to abort the operation. "
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="The submit button is also the same for objective and pit scouting. When done with all fields, tap it to submit. If you have not filled out all fields, the app will tell you to do so, making the text of the fields you did not submit red, and will not submit. If you have, the app will both log your data to an external file (saving it) and send it to the spreadsheet used for analytics. You should see messages saying that the send and save operations were successful; however, you may get saving or sending errors (in which case the app will notify you directly after submitting). If this happens, see me (Harsh) and I will attempt to troubleshoot."
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/sendP7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Have fun scouting!"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_weight=".1"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_material_light"
+                    android:onClick="sendSpinnerToggler"
+                    app:srcCompat="@mipmap/left" />
+
+                <Spinner
+                    android:id="@+id/sendSpinners"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".9"
+                    android:visibility="invisible"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/objectiveLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintTop_toTopOf="@+id/container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/objectiveMessage"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="24dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Objective"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <TextView
+                android:id="@+id/objectiveScoutNotify"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Scout this robot: Nearest Red"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveEventsLabel"
+                    android:tag="objectiveEventsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".55"
+                    android:gravity="center"
+                    android:text="Event"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveTeamLabel"
+                    android:tag="objectiveTeamLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Team"
+                    android:inputType="number"
+                    android:text="Team"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveMatchLabel"
+                    android:tag="objectiveMatchLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="Match"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveInitialsLabel"
+                    android:tag="objectiveInitialsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Initials"
+                    android:text="Initials"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/objectiveEvents"
+                    android:tag="objectiveEvents"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".55"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/objectiveTeam"
+                    android:tag="objectiveTeam"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/objectiveMatch"
+                    android:tag="objectiveMatch"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/objectiveInitials"
+                    android:tag="objectiveInitials"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/objectiveSandstorm"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Sandstorm"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveSandstormStartsLabel"
+                    android:tag="objectiveSandstormStartsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:text="Start"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveSandstormPreloadsLabel"
+                    android:tag="objectiveSandstormPreloadsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:text="Preload"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveSandstormHatchLabel"
+                    android:tag="objectiveSandstormHatchLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="Hatch"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveSandstormCargoLabel"
+                    android:tag="objectiveSandstormCargoLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:text="Cargo"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/objectiveSandstormStarts"
+                    android:tag="objectiveSandstormStarts"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+                <Spinner
+                    android:id="@+id/objectiveSandstormPreloads"
+                    android:tag="objectiveSandstormPreloads"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/objectiveSandstormHatch"
+                    android:tag="objectiveSandstormHatch"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/objectiveSandstormCargo"
+                    android:tag="objectiveSandstormCargo"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/objectiveHatch"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Hatch"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveHL1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHL1"
+                    android:text="Cargo\nShip"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHL2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHL2"
+                    android:text="Low\nRocket"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHL3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHL3"
+                    android:text="Medium\nRocket"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHL4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHL4"
+                    android:text="High\nRocket"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHL5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHL5"
+                    android:text="Dropped\non Field"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/objectiveH01"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH01"
+                    app:srcCompat="@mipmap/uph" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH02"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH02"
+                    app:srcCompat="@mipmap/uph" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH03"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH03"
+                    app:srcCompat="@mipmap/uph" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH04"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH04"
+                    app:srcCompat="@mipmap/uph" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH05"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH05"
+                    app:srcCompat="@mipmap/uph" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/objectiveHatches"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveHN1"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHN1"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHN2"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHN2"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHN3"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHN3"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHN4"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHN4"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveHN5"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveHN5"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/objectiveH-1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH-1"
+                    app:srcCompat="@mipmap/downh" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH-2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH-2"
+                    app:srcCompat="@mipmap/downh" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH-3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH-3"
+                    app:srcCompat="@mipmap/downh" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH-4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH-4"
+                    app:srcCompat="@mipmap/downh" />
+
+                <ImageButton
+                    android:id="@+id/objectiveH-5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveH-5"
+                    app:srcCompat="@mipmap/downh" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/objectiveCargo"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Cargo"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveCL1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCL1"
+                    android:text="Cargo\nShip"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCL2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCL2"
+                    android:text="Low\nRocket"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCL3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCL3"
+                    android:text="Medium\nRocket"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCL4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCL4"
+                    android:text="High\nRocket"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCL5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCL5"
+                    android:text="Dropped\non Field"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/objectiveC01"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC01"
+                    app:srcCompat="@mipmap/upc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC02"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC02"
+                    app:srcCompat="@mipmap/upc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC03"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC03"
+                    app:srcCompat="@mipmap/upc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC04"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC04"
+                    app:srcCompat="@mipmap/upc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC05"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC05"
+                    app:srcCompat="@mipmap/upc" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/objectiveCargos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveCN1"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCN1"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCN2"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCN2"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCN3"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCN3"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCN4"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCN4"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveCN5"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".2"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:tag="objectiveCN5"
+                    android:text="0"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/objectiveC-1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC-1"
+                    app:srcCompat="@mipmap/downc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC-2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC-2"
+                    app:srcCompat="@mipmap/downc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC-3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC-3"
+                    app:srcCompat="@mipmap/downc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC-4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC-4"
+                    app:srcCompat="@mipmap/downc" />
+
+                <ImageButton
+                    android:id="@+id/objectiveC-5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="@color/background_material_light"
+                    android:onClick="objectiveIndecrement"
+                    android:tag="objectiveC-5"
+                    app:srcCompat="@mipmap/downc" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/objectiveEndgame"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Endgame"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/objectiveEndgameClimbsLabel"
+                    android:tag="objectiveEndgameClimbsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:text="Climb"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/objectiveEndgameClimbHelpsLabel"
+                    android:tag="objectiveEndgameClimbHelpsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:text="Help"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/objectiveEndgameClimbs"
+                    android:tag="objectiveEndgameClimbs"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <Spinner
+                    android:id="@+id/objectiveEndgameClimbHelps"
+                    android:tag="objectiveEndgameClimbHelps"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/objectiveNote"
+                android:tag="objectiveNotesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Notes"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/objectiveNotesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/objectiveNotes"
+                    android:tag="objectiveNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Note malfunctions, fouls, driving, intake, speed, etc."
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_primary" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/objectiveReset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:onClick="objectiveResetValidator"
+                    android:text="Reset"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/objectiveResetValidator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Are you sure?"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/objectiveSubmit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:onClick="objectiveSubmit"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/pitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintTop_toTopOf="@+id/container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pitMessage"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="24dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="Pit"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitEventsLabel"
+                    android:tag="pitEventsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".55"
+                    android:gravity="center"
+                    android:text="Event"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitTeamLabel"
+                    android:tag="pitTeamLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Team"
+                    android:inputType="number"
+                    android:text="Team"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitRoleLabel"
+                    android:tag="pitRoleLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="Role"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitInitialsLabel"
+                    android:tag="pitInitialsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:text="Initials"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pitEvents"
+                    android:tag="pitEvents"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".55"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitTeam"
+                    android:tag="pitTeam"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitRole"
+                    android:tag="pitRole"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitInitials"
+                    android:tag="pitInitials"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".15"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pitSandstorm"
+                android:tag="pitSandstormInformationsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="Sandstorm"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pitSandstormInformations"
+                    android:tag="pitSandstormInformations"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <CheckBox
+                    android:id="@+id/pitSandstormFrontHatch"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitSandstormFrontHatchLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".435"
+                    android:text=" Front Hatches"
+                    android:textColor="@color/text_color_primary"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pitRobot"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="Robot"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitRobotSpeedLabel"
+                    android:tag="pitRobotSpeedLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Speed"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitRobotWeightLabel"
+                    android:tag="pitRobotWeightLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Weight"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitRobotVisionsLabel"
+                    android:tag="pitRobotVisionsLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Vision"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitRobotSpeed"
+                    android:tag="pitRobotSpeed"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitRobotWeight"
+                    android:tag="pitRobotWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <Spinner
+                    android:id="@+id/pitRobotVisions"
+                    android:tag="pitRobotVisions"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".25"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitRobotDrivetrainLabel"
+                    android:tag="pitRobotDrivetrainLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight=".50"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Drivetrain"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText android:hint="Note drivetrain type, and number and type of drivetrain motors" android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitRobotDrivetrain"
+                    android:tag="pitRobotDrivetrain"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".50"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitRobotHatchLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Hatch"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitRobotCargoLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Cargo"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/pitRobotHatchShip"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotHatchShipLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Ship"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitRobotHatchLow"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotHatchLowLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Low"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitRobotCargoShip"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotCargoShipLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Ship"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitRobotCargoLow"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotCargoLowLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Low"
+                    android:textColor="@color/text_color_primary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/pitRobotHatchMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotHatchMediumLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Medium"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitRobotHatchHigh"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotHatchHighLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" High"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitRobotCargoMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotCargoMediumLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Medium"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitRobotCargoHigh"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitRobotCargoHighLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" High"
+                    android:textColor="@color/text_color_primary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitRobotHatchMechanismLabel"
+                    android:tag="pitRobotHatchMechanismLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Hatch Mechanism"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitRobotCargoMechanismLabel"
+                    android:tag="pitRobotCargoMechanismLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Cargo Mechanism"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitRobotHatchMechanism"
+                    android:tag="pitRobotHatchMechanism"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitRobotCargoMechanism"
+                    android:tag="pitRobotCargoMechanism"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pitClimb"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="Climb"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/pitClimbLevel1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitClimbLevel1Label"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Level 1"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitClimbLevel2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitClimbLevel2Label"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Level 2"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitClimbLevel3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitClimbLevel3Label"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Level 3"
+                    android:textColor="@color/text_color_primary"/>
+
+                <CheckBox
+                    android:id="@+id/pitClimbHelp"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".065" />
+
+                <TextView
+                    android:id="@+id/pitClimbHelpLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".185"
+                    android:text=" Help"
+                    android:textColor="@color/text_color_primary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitClimbMechanismLabel"
+                    android:tag="pitClimbMechanismLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Climb Mechanism"
+                    android:textColor="@color/text_color_primary" />
+
+                <TextView
+                    android:id="@+id/pitClimbHelpMechanismLabel"
+                    android:tag="pitClimbHelpMechanismLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:text="Climb Help Mechanism"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitClimbMechanism"
+                    android:tag="pitClimbMechanism"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <EditText android:hint="..." android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitClimbHelpMechanism"
+                    android:tag="pitClimbHelpMechanism"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".5"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pitDriveTeamExperienceLabel"
+                    android:tag="pitDriveTeamExperienceLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Drive Team Experience"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText android:hint="Be clear between n years before, and nth year" android:ellipsize="end" android:textColorHint="@color/text_color_tertiary"
+                    android:id="@+id/pitDriveTeamExperience"
+                    android:tag="pitDriveTeamExperience"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pitNote"
+                android:tag="pitNotesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:text="Notes"
+                android:textAlignment="gravity"
+                android:textColor="@color/text_color_primary" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pitNotesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/pitNotes"
+                    android:tag="pitNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Note programming language, match strategy, etc."
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_primary" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/pitReset"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:onClick="pitResetValidator"
+                    android:text="Reset"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/pitResetValidator"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:text="Are you sure?"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/pitSubmit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:onClick="pitSubmit"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/background_material_light"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+</android.support.constraint.ConstraintLayout>
