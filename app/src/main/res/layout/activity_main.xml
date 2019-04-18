@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/instructionsLayout"
+        android:id="@+id/sendLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clickable="true"
@@ -39,7 +39,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/instructionsMessage"
+                android:id="@+id/sendMessage"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:textSize="24dp"
@@ -51,7 +51,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP1"
+                android:id="@+id/sendP1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -63,7 +63,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP2"
+                android:id="@+id/sendP2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -75,7 +75,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP3"
+                android:id="@+id/sendP3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -87,7 +87,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP4"
+                android:id="@+id/sendP4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -99,7 +99,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP5"
+                android:id="@+id/sendP5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -111,7 +111,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP6"
+                android:id="@+id/sendP6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -123,7 +123,7 @@
                 android:textColor="@color/text_color_primary" />
 
             <TextView
-                android:id="@+id/instructionsP7"
+                android:id="@+id/sendP7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -133,6 +133,31 @@
                 android:text="Have fun scouting!"
                 android:textAlignment="gravity"
                 android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_weight=".1"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_material_light"
+                    android:onClick="sendSpinnerToggler"
+                    app:srcCompat="@mipmap/left" />
+
+                <Spinner
+                    android:id="@+id/sendSpinners"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight=".9"
+                    android:visibility="invisible"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -1823,256 +1848,18 @@
 
     </ScrollView>
 
-    <ScrollView
-        android:id="@+id/sendLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
-        app:layout_constraintTop_toTopOf="@+id/container">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/sendMessage"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:textSize="24dp"
-            android:gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp"
-            android:text="Send"
-            android:textAlignment="gravity"
-            android:textColor="@color/text_color_primary" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <ScrollView
-        android:id="@+id/settingsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
-        app:layout_constraintTop_toTopOf="@+id/container">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/settingsMessage"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textSize="24dp"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="Settings"
-                android:textAlignment="gravity"
-                android:textColor="@color/text_color_primary" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight=".25"
-                    android:textAlignment="gravity"
-                    android:gravity="center"
-                    android:id="@+id/settingsSpinnerLabel"
-                    android:text="Scout this robot: "
-                    android:textColor="@color/text_color_primary" />
-
-                <Spinner
-                    android:id="@+id/settingsSpinners"
-                    android:layout_width="0dp"
-                    android:layout_weight=".75"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/text_color_primary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight=".25"
-                    android:textAlignment="gravity"
-                    android:gravity="center"
-                    android:id="@+id/settingsOIDLabel"
-                    android:text="Objective ID: "
-                    android:textColor="@color/text_color_primary" />
-
-                <EditText
-                    android:id="@+id/settingsOID"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".55"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/text_color_primary"
-                    android:text="1FAIpQLSd576eCt6nkJw0oHGq0vO4vg-MysOsgl_XLs2bbCAP8LmYB5Q"
-                    android:textSize="9dp" />
-
-                <Button
-                    android:id="@+id/settingsSaveOID"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".2"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Save"
-                    android:onClick="settingsSaveOID" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_weight=".25"
-                    android:textAlignment="gravity"
-                    android:gravity="center"
-                    android:id="@+id/settingsPIDLabel"
-                    android:text="Pit ID: "
-                    android:textColor="@color/text_color_primary" />
-
-                <EditText
-                    android:id="@+id/settingsPID"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".55"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/text_color_primary"
-                    android:text="1Ak6eePtfBNeRiirdBNp8R7jAu2uxjrTve2DBVRKbbaQ"
-                    android:textSize="9dp" />
-
-                <Button
-                    android:id="@+id/settingsSavePID"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".2"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Save"
-                    android:onClick="settingsSavePID" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <HorizontalScrollView
+    <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:visibility="visible"
-        android:background="@color/colorPrimary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/background_material_light"
+        app:itemIconTint="@drawable/bottom_navigation_colors"
+        app:itemTextColor="@drawable/bottom_navigation_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:animateLayoutChanges="true">
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="20dp"
-                android:textAlignment="gravity"
-                android:gravity="center"
-                android:id="@+id/instructionsLayoutLink"
-                android:clickable="true"
-                android:onClick="navigate"
-                android:text="INSTRUCTIONS"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="20dp"
-                android:textAlignment="gravity"
-                android:gravity="center"
-                android:id="@+id/objectiveLayoutLink"
-                android:clickable="true"
-                android:onClick="navigate"
-                android:text="OBJECTIVE"
-                android:textColor="@color/text_color_primary"
-                android:textStyle="bold"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="20dp"
-                android:textAlignment="gravity"
-                android:gravity="center"
-                android:id="@+id/pitLayoutLink"
-                android:clickable="true"
-                android:onClick="navigate"
-                android:text="PIT"
-                android:textColor="@color/text_color_primary"
-                android:textStyle="bold"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="20dp"
-                android:textAlignment="gravity"
-                android:gravity="center"
-                android:id="@+id/sendLayoutLink"
-                android:clickable="true"
-                android:onClick="navigate"
-                android:text="SEND"
-                android:textColor="@color/text_color_primary"
-                android:textStyle="bold"
-                android:textSize="16dp" />
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="20dp"
-                android:id="@+id/settingsLayoutLink"
-                android:textAlignment="gravity"
-                android:gravity="center"
-                android:clickable="true"
-                android:onClick="navigate"
-                android:text="SETTINGS"
-                android:textColor="@color/text_color_primary"
-                android:textStyle="bold"
-                android:textSize="16dp" />
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>

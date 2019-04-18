@@ -7,13 +7,18 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.RequestQueue;
 import org.apache.commons.lang3.StringUtils;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.ParcelUuid;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,6 +33,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
@@ -35,10 +42,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.net.URLEncoder;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
-    private String settingsSpinner;
+    private String sendSpinner;
     private String objectiveEvent;
     private String objectiveTeam; //needs to be updated
     private String objectiveMatch; //needs to be updated
@@ -82,60 +90,55 @@ public class MainActivity extends AppCompatActivity {
     private String pitDriveTeamExperience; //needs to be updated
     private String pitNotes; //needs to be updated
     private String pitDate; //needs to be updated
-    public void navigate(android.view.View view) {
-        int[] scrollViewIDs = {R.id.instructionsLayout, R.id.objectiveLayout, R.id.pitLayout, R.id.sendLayout, R.id.settingsLayout};
-        int[] scrollViewLinkIDs = {R.id.instructionsLayoutLink, R.id.objectiveLayoutLink, R.id.pitLayoutLink, R.id.sendLayoutLink, R.id.settingsLayoutLink};
-        findViewById(R.id.instructionsLayout).setVisibility(View.GONE);
-        findViewById(R.id.objectiveLayout).setVisibility(View.GONE);
-        findViewById(R.id.pitLayout).setVisibility(View.GONE);
-        findViewById(R.id.sendLayout).setVisibility(View.GONE);
-        findViewById(R.id.settingsLayout).setVisibility(View.GONE);
-        ((TextView) findViewById(R.id.instructionsLayoutLink)).setTextColor(getResources().getColor(R.color.text_color_primary));
-        ((TextView) findViewById(R.id.objectiveLayoutLink)).setTextColor(getResources().getColor(R.color.text_color_primary));
-        ((TextView) findViewById(R.id.pitLayoutLink)).setTextColor(getResources().getColor(R.color.text_color_primary));
-        ((TextView) findViewById(R.id.sendLayoutLink)).setTextColor(getResources().getColor(R.color.text_color_primary));
-        ((TextView) findViewById(R.id.settingsLayoutLink)).setTextColor(getResources().getColor(R.color.text_color_primary));
-        int visibleID = scrollViewIDs[linearSearch(scrollViewLinkIDs, view.getId())];
-        findViewById(visibleID).setVisibility(View.VISIBLE);
-        ((TextView) view).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-    }
-    private int linearSearch(int[] arr, int key) {
-        int res = -1;
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == key) {
-                res = i;
-                break;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    mTextMessage.setText(R.string.title_home);
+                    findViewById(R.id.sendLayout).setVisibility(View.VISIBLE);
+                    findViewById(R.id.objectiveLayout).setVisibility(View.GONE);
+                    findViewById(R.id.pitLayout).setVisibility(View.GONE);
+                    return true;
+                case R.id.navigation_dashboard:
+                    mTextMessage.setText(R.string.title_dashboard);
+                    findViewById(R.id.sendLayout).setVisibility(View.GONE);
+                    findViewById(R.id.objectiveLayout).setVisibility(View.VISIBLE);
+                    findViewById(R.id.pitLayout).setVisibility(View.GONE);
+                    return true;
+                case R.id.navigation_notifications:
+                    mTextMessage.setText(R.string.title_notifications);
+                    findViewById(R.id.sendLayout).setVisibility(View.GONE);
+                    findViewById(R.id.objectiveLayout).setVisibility(View.GONE);
+                    findViewById(R.id.pitLayout).setVisibility(View.VISIBLE);
+                    return true;
             }
+            return false;
         }
-        return res;
-    }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTextMessage = (TextView) findViewById(R.id.message);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         normalizeSpinners();
         try {
-            File path = new File(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs"), "settingsLogs");
+            File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
             if (!(path.exists())) {
                 path.mkdir();
             }
-            File log = new File(path, "spinner.txt");
+            File log = new File(path, "sendLog.txt");
             String stringUnmodified = (new BufferedReader(new FileReader(log))).readLine();
             int index = 0;
             if (StringUtils.isNumeric(stringUnmodified)) {
                 index = Math.min(Integer.parseInt(stringUnmodified), 5);
             }
-            ((Spinner) findViewById(R.id.settingsSpinners)).setSelection(index);
-            settingsSpinner = (String) ((Spinner) findViewById(R.id.settingsSpinners)).getItemAtPosition(index);
-            String str = "Scout this robot: " + settingsSpinner;
+            ((Spinner) findViewById(R.id.sendSpinners)).setSelection(index);
+            sendSpinner = (String) ((Spinner) findViewById(R.id.sendSpinners)).getItemAtPosition(index);
+            String str = "Scout this robot: " + sendSpinner;
             ((TextView) findViewById(R.id.objectiveScoutNotify)).setText(str);
-            File olog = new File(path, "OID.txt");
-            String ostringUnmodified = (new BufferedReader(new FileReader(olog))).readLine();
-            ((EditText) findViewById(R.id.settingsOID)).setText(ostringUnmodified);
-            File plog = new File(path, "PID.txt");
-            String pstringUnmodified = (new BufferedReader(new FileReader(plog))).readLine();
-            ((EditText) findViewById(R.id.settingsOID)).setText(pstringUnmodified);
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
         }
@@ -148,59 +151,61 @@ public class MainActivity extends AppCompatActivity {
         setListeners(objectiveLayout);
         setListeners(pitLayout);
         try {
-            File path = new File(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs"), "settingsLogs");
+            File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
             if (!(path.exists())) {
                 path.mkdir();
             }
-            File log = new File(path, "spinner.txt");
+            File log = new File(path, "sendLog.txt");
 
             String stringUnmodified = (new BufferedReader(new FileReader(log))).readLine();
             int index = 0;
             if (StringUtils.isNumeric(stringUnmodified)) {
                 index = Math.min(Integer.parseInt(stringUnmodified), 5);
             }
-            ((Spinner) findViewById(R.id.settingsSpinners)).setSelection(index);
-            settingsSpinner = (String) ((Spinner) findViewById(R.id.settingsSpinners)).getItemAtPosition(index);
-            String str = "Scout this robot: " + settingsSpinner;
+            ((Spinner) findViewById(R.id.sendSpinners)).setSelection(index);
+            sendSpinner = (String) ((Spinner) findViewById(R.id.sendSpinners)).getItemAtPosition(index);
+            String str = "Scout this robot: " + sendSpinner;
             ((TextView) findViewById(R.id.objectiveScoutNotify)).setText(str);
-            File olog = new File(path, "OID.txt");
-            String ostringUnmodified = (new BufferedReader(new FileReader(olog))).readLine();
-            ((EditText) findViewById(R.id.settingsOID)).setText(ostringUnmodified);
-            File plog = new File(path, "PID.txt");
-            String pstringUnmodified = (new BufferedReader(new FileReader(plog))).readLine();
-            ((EditText) findViewById(R.id.settingsOID)).setText(pstringUnmodified);
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
         }
     }
+    public void sendSpinnerToggler(android.view.View view) {
+        View v = findViewById(R.id.sendSpinners);
+        if(v.getVisibility() == View.VISIBLE) {
+            v.setVisibility(View.INVISIBLE);
+        } else {
+            v.setVisibility(View.VISIBLE);
+        }
+    }
     protected void normalizeSpinners() {
-        final Spinner settingsSpinners = (Spinner) findViewById(R.id.settingsSpinners);
-        String[] settingsSpinnersArray = {"Nearest Red", "Middle Red", "Farthest Red", "Nearest Blue", "Middle Blue", "Farthest Blue"};
-        List<String> settingsSpinnersList = new ArrayList<>(Arrays.asList(settingsSpinnersArray));
-        ArrayAdapter<String> settingsSpinnersArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, settingsSpinnersList) {
+        final Spinner sendSpinners = (Spinner) findViewById(R.id.sendSpinners);
+        String[] sendSpinnersArray = {"Nearest Red", "Middle Red", "Farthest Red", "Nearest Blue", "Middle Blue", "Farthest Blue"};
+        List<String> sendSpinnersList = new ArrayList<>(Arrays.asList(sendSpinnersArray));
+        ArrayAdapter<String> sendSpinnersArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, sendSpinnersList) {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 return view;
             }
         };
-        settingsSpinnersArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        settingsSpinners.setAdapter(settingsSpinnersArrayAdapter);
-        settingsSpinners.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sendSpinnersArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sendSpinners.setAdapter(sendSpinnersArrayAdapter);
+        sendSpinners.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                settingsSpinner = (String) parent.getItemAtPosition(position);
-                String str = "Scout this robot: " + settingsSpinner;
+                sendSpinner = (String) parent.getItemAtPosition(position);
+                String str = "Scout this robot: " + sendSpinner;
                 ((TextView) findViewById(R.id.objectiveScoutNotify)).setText(str);
                 try {
-                    File path = new File(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs"), "settingsLogs");
+                    File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
                     if (!(path.exists())) {
                         path.mkdir();
                     }
-                    File log = new File(path, "spinner.txt");
+                    File log = new File(path, "sendLog.txt");
                     FileOutputStream out = new FileOutputStream(log, false);
                     OutputStreamWriter writer = new OutputStreamWriter(out);
-                    writer.write(Integer.toString(settingsSpinners.getSelectedItemPosition()));
+                    writer.write(Integer.toString(sendSpinners.getSelectedItemPosition()));
                     writer.flush();
                     writer.close();
                 } catch (IOException e) {
@@ -579,7 +584,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void objectiveGetHTML(final String msgs) throws Exception {
         String msg = URLEncoder.encode(msgs, "UTF-8");
-        String url = "https://docs.google.com/forms/d/e/" + ((EditText) findViewById(R.id.settingsOID)).getText() + "/formResponse?usp=pp_url&entry.615575561=" + msg + "&submit=Submit";
+        String url = "https://docs.google.com/forms/d/e/1FAIpQLSd576eCt6nkJw0oHGq0vO4vg-MysOsgl_XLs2bbCAP8LmYB5Q/formResponse?usp=pp_url&entry.615575561=" + msg + "&submit=Submit";
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -610,7 +615,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void pitGetHTML(final String msgs) throws Exception {
         String msg = URLEncoder.encode(msgs, "UTF-8");
-        String url = "https://docs.google.com/forms/d/e/" + ((EditText) findViewById(R.id.settingsPID)).getText() + "/formResponse?entry.615575561=" + msg + "&submit=Submit";
+        String url = "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfcctyEMTqbxZEqbNfLnmcdNOqATGOdA_8KmuU58P6oMvg5DQ/formResponse?entry.615575561=" + msg + "&submit=Submit";
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -823,33 +828,6 @@ public class MainActivity extends AppCompatActivity {
             }
             pitReset(findViewById(R.id.pitReset));
         }
-    }
-    public void settingsSaveOID(android.view.View view) throws IOException {
-        String OID = ((EditText) findViewById(R.id.settingsOID)).getText().toString();
-        File path = new File(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs"), "settingsLogs");
-        if (!(path.exists())) {
-            path.mkdir();
-        }
-        File log = new File(path, "OID.txt");
-        FileOutputStream out = new FileOutputStream(log, false);
-        OutputStreamWriter writer = new OutputStreamWriter(out);
-        writer.write(OID);
-        writer.flush();
-        writer.close();
-    }
-
-    public void settingsSavePID(android.view.View view) throws IOException {
-        String PID = ((EditText) findViewById(R.id.settingsPID)).getText().toString();
-        File path = new File(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs"), "settingsLogs");
-        if (!(path.exists())) {
-            path.mkdir();
-        }
-        File log = new File(path, "PID.txt");
-        FileOutputStream out = new FileOutputStream(log, false);
-        OutputStreamWriter writer = new OutputStreamWriter(out);
-        writer.write(PID);
-        writer.flush();
-        writer.close();
     }
 }
           /*===========\
