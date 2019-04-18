@@ -15,11 +15,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d30229ca-1459-4698-b054-f01045e9e30f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/team1257/deepspacescouting/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/team1257/deepspacescouting/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d30229ca-1459-4698-b054-f01045e9e30f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,10 +40,14 @@
       <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="2077" column="46" selection-start-line="2077" selection-start-column="46" selection-end-line="2077" selection-end-column="46" />
+            <state relative-caret-position="58">
+              <caret line="2054" column="35" lean-forward="true" selection-start-line="2054" selection-start-column="35" selection-end-line="2054" selection-end-column="35" />
               <folding>
                 <element signature="e#519#1094#0" />
+                <element signature="e#687#722#0" expanded="true" />
+                <element signature="e#757#792#0" expanded="true" />
+                <element signature="e#826#859#0" expanded="true" />
+                <element signature="e#881#901#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,15 +85,6 @@
                 <element signature="e#35479#36513#0" expanded="true" />
                 <element signature="e#36512#36513#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppCompatActivity.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/9acffa05c389b67b16510d6d01d18995/jars/classes.jar!/android/support/v7/app/AppCompatActivity.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="127" column="5" lean-forward="true" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -3190,10 +3181,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="2077" column="46" selection-start-line="2077" selection-start-column="46" selection-end-line="2077" selection-end-column="46" />
+        <state relative-caret-position="58">
+          <caret line="2054" column="35" lean-forward="true" selection-start-line="2054" selection-start-column="35" selection-end-line="2054" selection-end-column="35" />
           <folding>
             <element signature="e#519#1094#0" />
+            <element signature="e#687#722#0" expanded="true" />
+            <element signature="e#757#792#0" expanded="true" />
+            <element signature="e#826#859#0" expanded="true" />
+            <element signature="e#881#901#0" expanded="true" />
           </folding>
         </state>
       </provider>
