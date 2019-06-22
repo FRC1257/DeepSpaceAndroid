@@ -1376,161 +1376,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/pitRobotHatchLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".5"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:textAlignment="gravity"
-                    android:text="Hatch"
-                    android:textColor="@color/text_color_primary" />
-
-                <TextView
-                    android:id="@+id/pitRobotCargoLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".5"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:textAlignment="gravity"
-                    android:text="Cargo"
-                    android:textColor="@color/text_color_primary" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/pitRobotHatchShip"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotHatchShipLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Ship"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitRobotHatchLow"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotHatchLowLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Low"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitRobotCargoShip"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotCargoShipLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Ship"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitRobotCargoLow"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotCargoLowLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Low"
-                    android:textColor="@color/text_color_primary"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/pitRobotHatchMedium"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotHatchMediumLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Medium"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitRobotHatchHigh"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotHatchHighLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" High"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitRobotCargoMedium"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotCargoMediumLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Medium"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitRobotCargoHigh"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitRobotCargoHighLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" High"
-                    android:textColor="@color/text_color_primary"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
                     android:id="@+id/pitRobotHatchMechanismLabel"
                     android:tag="pitRobotHatchMechanismLabel"
                     android:layout_width="0dp"
@@ -1596,69 +1441,6 @@
                 android:text="Climb"
                 android:textAlignment="gravity"
                 android:textColor="@color/text_color_primary" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/pitClimbLevel1"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitClimbLevel1Label"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Level 1"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitClimbLevel2"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitClimbLevel2Label"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Level 2"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitClimbLevel3"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitClimbLevel3Label"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Level 3"
-                    android:textColor="@color/text_color_primary"/>
-
-                <CheckBox
-                    android:id="@+id/pitClimbHelp"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".065" />
-
-                <TextView
-                    android:id="@+id/pitClimbHelpLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight=".185"
-                    android:text=" Help"
-                    android:textColor="@color/text_color_primary"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1849,6 +1631,100 @@
                 android:text="Send"
                 android:textAlignment="gravity"
                 android:textColor="@color/text_color_primary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/sendFileSpinners"
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <Spinner
+                    android:id="@+id/sendFileSources"
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".25"
+                    android:text="Load Text"
+                    android:onClick="sendLoadFile"/>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/sendTextLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/sendText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Text to send"
+                    android:textColor="@color/text_color_primary"
+                    android:textColorHint="@color/text_color_primary" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/sendPairs"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/text_color_primary" />
+
+                <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:text="Send"
+                    android:onClick="sendMessage"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sendObjective"
+                    android:text="Objective Upload"
+                    android:onClick="sendUpload" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sendPit"
+                    android:text="Pit Upload"
+                    android:onClick="sendUpload" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

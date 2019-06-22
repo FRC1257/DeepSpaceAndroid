@@ -9,7 +9,9 @@ import com.android.volley.RequestQueue;
 import org.apache.commons.lang3.StringUtils;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.TextInputEditText;
@@ -29,12 +31,16 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.net.URLEncoder;
+import java.util.Set;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
@@ -63,25 +69,21 @@ public class MainActivity extends AppCompatActivity {
     private String pitRobotWeight; //needs to be updated
     private String pitRobotVision;
     private String pitRobotDrivetrain; //needs to be updated
-    private boolean pitRobotHatchShip; //needs to be updated
-    private boolean pitRobotHatchLow; //needs to be updated
-    private boolean pitRobotHatchMedium; //needs to be updated
-    private boolean pitRobotHatchHigh; //needs to be updated
-    private boolean pitRobotCargoShip; //needs to be updated
-    private boolean pitRobotCargoLow; //needs to be updated
-    private boolean pitRobotCargoMedium; //needs to be updated
-    private boolean pitRobotCargoHigh; //needs to be updated
     private String pitRobotHatchMechanism; //needs to be updated
     private String pitRobotCargoMechanism; //needs to be updated
-    private boolean pitClimbLevel1; //needs to be updated
-    private boolean pitClimbLevel2; //needs to be updated
-    private boolean pitClimbLevel3; //needs to be updated
-    private boolean pitClimbHelp; //needs to be updated
     private String pitClimbMechanism; //needs to be updated
     private String pitClimbHelpMechanism; //needs to be updated
     private String pitDriveTeamExperience; //needs to be updated
     private String pitNotes; //needs to be updated
     private String pitDate; //needs to be updated
+    private String sendFileSpinner;
+    private String sendFileSource;
+    private String sendText;
+    private static final UUID sendUUID = UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+    BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private BluetoothDevice mmDevice;
+    private UUID deviceUUID;
+    ConnectedThread mConnectedThread;
     public void navigate(android.view.View view) {
         int[] scrollViewIDs = {R.id.instructionsLayout, R.id.objectiveLayout, R.id.pitLayout, R.id.sendLayout, R.id.settingsLayout};
         int[] scrollViewLinkIDs = {R.id.instructionsLayoutLink, R.id.objectiveLayoutLink, R.id.pitLayoutLink, R.id.sendLayoutLink, R.id.settingsLayoutLink};
@@ -137,7 +139,12 @@ public class MainActivity extends AppCompatActivity {
             String pstringUnmodified = (new BufferedReader(new FileReader(plog))).readLine();
             ((EditText) findViewById(R.id.settingsOID)).setText(pstringUnmodified);
         } catch (IOException e) {
-            Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        if (bluetoothAdapter != null && !bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new
+                    Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
         }
     }
     @Override
@@ -170,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             String pstringUnmodified = (new BufferedReader(new FileReader(plog))).readLine();
             ((EditText) findViewById(R.id.settingsOID)).setText(pstringUnmodified);
         } catch (IOException e) {
-            Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
     }
     protected void normalizeSpinners() {
@@ -204,11 +211,86 @@ public class MainActivity extends AppCompatActivity {
                     writer.flush();
                     writer.close();
                 } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        Spinner sendFileSpinners = (Spinner) findViewById(R.id.sendFileSpinners);
+        String[] sendFileSpinnersArray = {"Choose one...", "Error Log", "Complete Log"};
+        List<String> sendFileSpinnersList = new ArrayList<>(Arrays.asList(sendFileSpinnersArray));
+        ArrayAdapter<String> sendFileSpinnersArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, sendFileSpinnersList) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                return view;
+            }
+        };
+        sendFileSpinnersArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sendFileSpinners.setAdapter(sendFileSpinnersArrayAdapter);
+        sendFileSpinners.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sendFileSpinner = (String) parent.getItemAtPosition(position);
+                findViewById(R.id.objectiveResetValidator).setVisibility(View.GONE);
+                findViewById(R.id.objectiveReset).setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                findViewById(R.id.objectiveResetValidator).setVisibility(View.GONE);
+                findViewById(R.id.objectiveReset).setVisibility(View.VISIBLE);
+            }
+        });
+        Spinner sendFileSources = (Spinner) findViewById(R.id.sendFileSources);
+        String[] sendFileSourcesArray = {"Choose one...", "Objective", "Pit"};
+        List<String> sendFileSourcesList = new ArrayList<>(Arrays.asList(sendFileSourcesArray));
+        ArrayAdapter<String> sendFileSourcesArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, sendFileSourcesList) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                return view;
+            }
+        };
+        sendFileSourcesArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sendFileSources.setAdapter(sendFileSourcesArrayAdapter);
+        sendFileSources.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sendFileSource = (String) parent.getItemAtPosition(position);
+                findViewById(R.id.objectiveResetValidator).setVisibility(View.GONE);
+                findViewById(R.id.objectiveReset).setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                findViewById(R.id.objectiveResetValidator).setVisibility(View.GONE);
+                findViewById(R.id.objectiveReset).setVisibility(View.VISIBLE);
+            }
+        });
+        final Spinner sendPairs = (Spinner) findViewById(R.id.sendPairs);
+        String[] sendPairsArray = {"Choose one...", "A", "B", "C", "D", "E", "F"};
+        List<String> sendPairsList = new ArrayList<>(Arrays.asList(sendPairsArray));
+        ArrayAdapter<String> sendPairsArrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, sendPairsList) {
+            @Override
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                return view;
+            }
+        };
+        sendPairsArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sendPairs.setAdapter(sendPairsArrayAdapter);
+        sendPairs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                pairDevice(sendPairs, Math.max(0, position - 1));
+                findViewById(R.id.objectiveResetValidator).setVisibility(View.GONE);
+                findViewById(R.id.objectiveReset).setVisibility(View.VISIBLE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                findViewById(R.id.objectiveResetValidator).setVisibility(View.GONE);
+                findViewById(R.id.objectiveReset).setVisibility(View.VISIBLE);
             }
         });
         Spinner objectiveEvents = (Spinner) findViewById(R.id.objectiveEvents);
@@ -534,50 +616,14 @@ public class MainActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.pitRobotWeight)).setText("");
         ((Spinner) findViewById(R.id.pitRobotVisions)).setSelection(0);
         ((EditText) findViewById(R.id.pitRobotDrivetrain)).setText("");
-        if (((CheckBox) findViewById(R.id.pitRobotHatchShip)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotHatchShip)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotHatchLow)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotHatchLow)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotHatchMedium)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotHatchMedium)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotHatchHigh)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotHatchHigh)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotCargoShip)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotCargoShip)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotCargoLow)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotCargoLow)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotCargoMedium)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotCargoMedium)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitRobotCargoHigh)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitRobotCargoHigh)).toggle();
-        }
         ((EditText) findViewById(R.id.pitRobotHatchMechanism)).setText("");
         ((EditText) findViewById(R.id.pitRobotCargoMechanism)).setText("");
-        if (((CheckBox) findViewById(R.id.pitClimbLevel1)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitClimbLevel1)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitClimbLevel2)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitClimbLevel2)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitClimbLevel3)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitClimbLevel3)).toggle();
-        }
-        if (((CheckBox) findViewById(R.id.pitClimbHelp)).isChecked()) {
-            ((CheckBox) findViewById(R.id.pitClimbHelp)).toggle();
-        }
         ((EditText) findViewById(R.id.pitClimbMechanism)).setText("");
         ((EditText) findViewById(R.id.pitClimbHelpMechanism)).setText("");
         ((EditText) findViewById(R.id.pitDriveTeamExperience)).setText("");
         ((TextInputEditText) findViewById(R.id.pitNotes)).setText("");
     }
-    public void objectiveGetHTML(final String msgs) throws Exception {
+    public void objectiveGetHTML(final String msgs, final boolean errorr) throws Exception {
         String msg = URLEncoder.encode(msgs, "UTF-8");
         String url = "https://docs.google.com/forms/d/e/" + ((EditText) findViewById(R.id.settingsOID)).getText() + "/formResponse?usp=pp_url&entry.615575561=" + msg + "&submit=Submit";
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -590,25 +636,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Sending error (see Harsh)", Toast.LENGTH_SHORT).show();
-                try {
-                    File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
-                    if (!(path.exists())) {
-                        path.mkdir();
+                if (errorr) {
+                    try {
+                        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
+                        if (!(path.exists())) {
+                            path.mkdir();
+                        }
+                        File log = new File(path, "objectiveErrorLog.txt");
+                        FileOutputStream out = new FileOutputStream(log, true);
+                        OutputStreamWriter writer = new OutputStreamWriter(out);
+                        writer.append(msgs);
+                        writer.flush();
+                        writer.close();
+                    } catch (IOException e) {
+                        Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
                     }
-                    File log = new File(path, "objectiveErrorLog.txt");
-                    FileOutputStream out = new FileOutputStream(log, true);
-                    OutputStreamWriter writer = new OutputStreamWriter(out);
-                    writer.append(msgs);
-                    writer.flush();
-                    writer.close();
-                } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         queue.add(stringRequest);
     }
-    public void pitGetHTML(final String msgs) throws Exception {
+    public void pitGetHTML(final String msgs, final boolean errorr) throws Exception {
         String msg = URLEncoder.encode(msgs, "UTF-8");
         String url = "https://docs.google.com/forms/d/e/" + ((EditText) findViewById(R.id.settingsPID)).getText() + "/formResponse?entry.615575561=" + msg + "&submit=Submit";
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -621,19 +669,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Sending error (see Harsh)", Toast.LENGTH_SHORT).show();
-                try {
-                    File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
-                    if (!(path.exists())) {
-                        path.mkdir();
+                if (errorr) {
+                    try {
+                        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
+                        if (!(path.exists())) {
+                            path.mkdir();
+                        }
+                        File log = new File(path, "pitErrorLog.txt");
+                        FileOutputStream out = new FileOutputStream(log, true);
+                        OutputStreamWriter writer = new OutputStreamWriter(out);
+                        writer.append(msgs);
+                        writer.flush();
+                        writer.close();
+                    } catch (IOException e) {
+                        Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
                     }
-                    File log = new File(path, "pitErrorLog.txt");
-                    FileOutputStream out = new FileOutputStream(log, true);
-                    OutputStreamWriter writer = new OutputStreamWriter(out);
-                    writer.append(msgs);
-                    writer.flush();
-                    writer.close();
-                } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -718,7 +768,7 @@ public class MainActivity extends AppCompatActivity {
             }
             sb.append("}");
             String str = sb.toString();
-            objectiveGetHTML(str);
+            objectiveGetHTML(str, true);
             try {
                 File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
                 if (!(path.exists())) {
@@ -732,7 +782,7 @@ public class MainActivity extends AppCompatActivity {
                 writer.close();
                 Toast.makeText(getApplicationContext(), "Successfully saved", Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
-                Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
             objectiveReset(findViewById(R.id.objectiveReset));
         }
@@ -746,20 +796,8 @@ public class MainActivity extends AppCompatActivity {
         pitRobotSpeed = ((TextView) findViewById(R.id.pitRobotSpeed)).getText().toString();
         pitRobotWeight = ((TextView) findViewById(R.id.pitRobotWeight)).getText().toString();
         pitRobotDrivetrain = ((TextView) findViewById(R.id.pitRobotDrivetrain)).getText().toString();
-        pitRobotHatchShip = ((CheckBox) findViewById(R.id.pitRobotHatchShip)).isChecked();
-        pitRobotHatchLow = ((CheckBox) findViewById(R.id.pitRobotHatchLow)).isChecked();
-        pitRobotHatchMedium = ((CheckBox) findViewById(R.id.pitRobotHatchMedium)).isChecked();
-        pitRobotHatchHigh = ((CheckBox) findViewById(R.id.pitRobotHatchHigh)).isChecked();
-        pitRobotCargoShip = ((CheckBox) findViewById(R.id.pitRobotCargoShip)).isChecked();
-        pitRobotCargoLow = ((CheckBox) findViewById(R.id.pitRobotCargoLow)).isChecked();
-        pitRobotCargoMedium = ((CheckBox) findViewById(R.id.pitRobotCargoMedium)).isChecked();
-        pitRobotCargoHigh = ((CheckBox) findViewById(R.id.pitRobotCargoHigh)).isChecked();
         pitRobotHatchMechanism = ((TextView) findViewById(R.id.pitRobotHatchMechanism)).getText().toString();
         pitRobotCargoMechanism = ((TextView) findViewById(R.id.pitRobotCargoMechanism)).getText().toString();
-        pitClimbLevel1 = ((CheckBox) findViewById(R.id.pitClimbLevel1)).isChecked();
-        pitClimbLevel2 = ((CheckBox) findViewById(R.id.pitClimbLevel2)).isChecked();
-        pitClimbLevel3 = ((CheckBox) findViewById(R.id.pitClimbLevel3)).isChecked();
-        pitClimbHelp = ((CheckBox) findViewById(R.id.pitClimbHelp)).isChecked();
         pitClimbMechanism = ((TextView) findViewById(R.id.pitClimbMechanism)).getText().toString();
         pitClimbHelpMechanism = ((TextView) findViewById(R.id.pitClimbHelpMechanism)).getText().toString();
         pitDriveTeamExperience = ((TextView) findViewById(R.id.pitDriveTeamExperience)).getText().toString();
@@ -775,20 +813,8 @@ public class MainActivity extends AppCompatActivity {
         dataPoints.add(pitRobotWeight);
         dataPoints.add(pitRobotVision);
         dataPoints.add(pitRobotDrivetrain);
-        dataPoints.add(Boolean.toString(pitRobotHatchShip));
-        dataPoints.add(Boolean.toString(pitRobotHatchLow));
-        dataPoints.add(Boolean.toString(pitRobotHatchMedium));
-        dataPoints.add(Boolean.toString(pitRobotHatchHigh));
-        dataPoints.add(Boolean.toString(pitRobotCargoShip));
-        dataPoints.add(Boolean.toString(pitRobotCargoLow));
-        dataPoints.add(Boolean.toString(pitRobotCargoMedium));
-        dataPoints.add(Boolean.toString(pitRobotCargoHigh));
         dataPoints.add(pitRobotHatchMechanism);
         dataPoints.add(pitRobotCargoMechanism);
-        dataPoints.add(Boolean.toString(pitClimbLevel1));
-        dataPoints.add(Boolean.toString(pitClimbLevel2));
-        dataPoints.add(Boolean.toString(pitClimbLevel3));
-        dataPoints.add(Boolean.toString(pitClimbHelp));
         dataPoints.add(pitClimbMechanism);
         dataPoints.add(pitClimbHelpMechanism);
         dataPoints.add(pitDriveTeamExperience);
@@ -805,7 +831,7 @@ public class MainActivity extends AppCompatActivity {
             }
             sb.append("}");
             String str = sb.toString();
-            pitGetHTML(str);
+            pitGetHTML(str, true);
             try {
                 File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
                 if (!(path.exists())) {
@@ -819,9 +845,181 @@ public class MainActivity extends AppCompatActivity {
                 writer.close();
                 Toast.makeText(getApplicationContext(), "Successfully saved", Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
-                Toast.makeText(getApplicationContext(), "Saving error (see Harsh)", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
             pitReset(findViewById(R.id.pitReset));
+        }
+    }
+    public void sendLoadFile(android.view.View view) throws IOException {
+        String type = sendFileSpinner.equals("Complete Log") ? "" : "Error";
+        String str = sendFileSource.toLowerCase() + type + "Log.txt";
+        File path = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "2019ScoutingLogs");
+        if (!(path.exists())) {
+            path.mkdir();
+        }
+        File log = new File(path, str);
+        String rawText = "";
+        BufferedReader BR = new BufferedReader(new FileReader(log));
+        String temp;
+        while ((temp = BR.readLine()) != null) {
+            rawText += temp;
+        }
+        sendText = rawText;
+        ((TextInputEditText) findViewById(R.id.sendText)).setText(sendText);
+    }
+    public void pairDevice(android.view.View v, int i) {
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        if (pairedDevices.size() > 0) {
+            Object[] devices = pairedDevices.toArray();
+            BluetoothDevice device = (BluetoothDevice) devices[i];
+            AcceptThread accept = new AcceptThread();
+            accept.start();
+            ConnectThread connect = new ConnectThread(device, sendUUID);
+            connect.start();
+        }
+    }
+    private class ConnectThread extends Thread {
+        private BluetoothSocket mmSocket;
+        public ConnectThread(BluetoothDevice device, UUID uuid) {
+            mmDevice = device;
+            deviceUUID = uuid;
+        }
+        public void run() {
+            BluetoothSocket tmp = null;
+            try {
+                tmp = mmDevice.createRfcommSocketToServiceRecord(sendUUID);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mmSocket = tmp;
+            try {
+                mmSocket.connect();
+            } catch (IOException e) {
+                try {
+                    mmSocket.close();
+                } catch (IOException el) {
+                    el.printStackTrace();
+                }
+            }
+            connected(mmSocket);
+        }
+        public void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void connected(BluetoothSocket mmSocket) {
+        mConnectedThread = new ConnectedThread(mmSocket);
+        mConnectedThread.start();
+    }
+    private class ConnectedThread extends Thread {
+        private final BluetoothSocket mmSocket;
+        private final InputStream mmInStream;
+        private final OutputStream mmOutStream;
+        public ConnectedThread(BluetoothSocket socket) {
+            mmSocket = socket;
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+            try {
+                tmpIn = mmSocket.getInputStream();
+                tmpOut = mmSocket.getOutputStream();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mmInStream = tmpIn;
+            mmOutStream = tmpOut;
+        }
+        public void run() {
+            byte[] buffer = new byte[1024];
+            int bytes;
+            while (true) {
+                try {
+                    bytes = mmInStream.read(buffer);
+                    final String incomingMessage = new String(buffer, 0, bytes);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((TextInputEditText) findViewById(R.id.sendText)).setText(incomingMessage);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }
+        public void write(byte[] bytes) {
+            try {
+                mmOutStream.write(bytes);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        public void cancel() {
+            try {
+                mmSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void sendMessage(View v) {
+        byte[] bytes = ((TextInputEditText) findViewById(R.id.sendText)).getText().toString().getBytes();
+        mConnectedThread.write(bytes);
+    }
+    private class AcceptThread extends Thread {
+        private final BluetoothServerSocket mmServerSocket;
+        public AcceptThread(){
+            BluetoothServerSocket tmp = null ;
+            try {
+                tmp = bluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord("appname", sendUUID);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            mmServerSocket = tmp;
+        }
+        public void run(){
+            BluetoothSocket socket = null;
+            try {
+                socket = mmServerSocket.accept();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if(socket != null){
+                connected(socket);
+            }
+        }
+        public void cancel() {
+            try {
+                mmServerSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void sendUpload(android.view.View view) {
+        boolean isObjective = (view.getId() == R.id.sendObjective);
+        String[] matchesList = ((TextInputEditText) findViewById(R.id.sendText)).getText().toString().split("\\}");
+        ArrayList<String> matches = new ArrayList<String>(Arrays.asList(matchesList));
+        while (matches.size() > 0) {
+            String finalString = "";
+            while ((finalString.length() < 1000) && (matches.size() > 0)) {
+                finalString += matches.get(0) + "}";
+                matches.remove(0);
+            }
+            try {
+                if (isObjective) {
+                    objectiveGetHTML(finalString, false);
+                } else {
+                    pitGetHTML(finalString, false);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
     public void settingsSaveOID(android.view.View view) throws IOException {
@@ -867,10 +1065,10 @@ public class MainActivity extends AppCompatActivity {
             \.................................._====_._............\
                \........................... ../            *-.._......\
                  \..........................|                   \_____/*
-                   \........................|   COURTESY OF        \----\
-                     \......................|      TEAM 1257       |....\
-                       \=\..................|                      |.....\
-                        \==\.................\       -HARSH       /......|
+                   \........................|                     \----\
+                     \......................|   FROM 1257          |....\
+                       \=\..................|        WITH LOVE     |.....\
+                        \==\.................\                    /......|
                          \==\\.................\                 /......|
                           \=\.\\.................______________/......./
                             \=..\.................................../

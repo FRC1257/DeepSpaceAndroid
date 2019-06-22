@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
 MERGED from [com.android.support:design:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\7c1ec52c44e801b56a1ca560a90c18a8\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\9acffa05c389b67b16510d6d01d18995\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\a8332174414027a2eb022a4f4769a18f\AndroidManifest.xml:2:1-11:12
@@ -12,6 +12,7 @@ MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\harsh\
 MERGED from [me.dm7.barcodescanner:zxing:1.9.8] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\zxing-1.9.8.aar\988f46fcaacef8aad925163dd2a23038\AndroidManifest.xml:2:1-13:12
 MERGED from [me.dm7.barcodescanner:core:1.9.8] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\core-1.9.8.aar\5cebe218813fc1f6fa9f34e2bff0fc86\AndroidManifest.xml:2:1-13:12
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\2f9d75b49a79a79d548e4159d0df46a4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.volley:volley:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\260313027d50eb133d44126636d95827\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\65286069a4598f5bc64f4171013180c0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\79b0e2b932dc33f7e8b8012176df9802\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\3b75a01b914cca921d905e8272d58670\AndroidManifest.xml:17:1-22:12
@@ -39,45 +40,57 @@ MERGED from [com.android.support:interpolator:28.0.0] C:\Users\harsh\.gradle\cac
 MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\livedata-1.1.1.aar\7b6d337a990c0dafddb479998b48c9ee\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\ba1c4be3c113f662f69a7cf4ccd8468c\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\b25f10c326647a56681cf83a89ade271\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
+INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
 	package
 		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:3:5-45
 		INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
 		INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-27:12
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:1-30:12
 		INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:2:11-69
+uses-feature#android.hardware.bluetooth
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:4:5-63
+	android:name
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:4:19-60
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:4:5-67
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:4:22-64
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:5:5-81
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:5:22-78
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:6:22-78
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:6:5-68
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:7:5-68
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:6:22-65
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:7:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:7:5-74
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:8:5-74
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:7:22-71
-uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:8:5-81
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:8:22-71
+uses-permission#android.permission.BLUETOOTH_PRIVILEGED
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:9:5-79
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:9:22-76
+uses-permission#android.permission.BLUETOOTH_ACCESS_COARSE_LOCATION
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:10:5-91
+	android:name
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:10:22-88
+uses-permission#android.permission.BLUETOOTH_ACCESS_FINE_LOCATION
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:11:5-89
+	android:name
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:11:22-86
 application
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:10:5-26:19
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:13:5-29:19
 MERGED from [com.android.support:design:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\7c1ec52c44e801b56a1ca560a90c18a8\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\7c1ec52c44e801b56a1ca560a90c18a8\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\a8332174414027a2eb022a4f4769a18f\AndroidManifest.xml:9:5-20
@@ -86,6 +99,8 @@ MERGED from [me.dm7.barcodescanner:zxing:1.9.8] C:\Users\harsh\.gradle\caches\tr
 MERGED from [me.dm7.barcodescanner:zxing:1.9.8] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\zxing-1.9.8.aar\988f46fcaacef8aad925163dd2a23038\AndroidManifest.xml:11:5-20
 MERGED from [me.dm7.barcodescanner:core:1.9.8] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\core-1.9.8.aar\5cebe218813fc1f6fa9f34e2bff0fc86\AndroidManifest.xml:11:5-20
 MERGED from [me.dm7.barcodescanner:core:1.9.8] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\core-1.9.8.aar\5cebe218813fc1f6fa9f34e2bff0fc86\AndroidManifest.xml:11:5-20
+MERGED from [com.android.volley:volley:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\260313027d50eb133d44126636d95827\AndroidManifest.xml:9:5-20
+MERGED from [com.android.volley:volley:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\260313027d50eb133d44126636d95827\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\e7a8a45959120bd9d17e88b0a1061757\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\e7a8a45959120bd9d17e88b0a1061757\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\27b71d9de79f0939524be8615e589a9e\AndroidManifest.xml:22:5-23:19
@@ -93,35 +108,35 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\harsh\.gra
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\e7a8a45959120bd9d17e88b0a1061757\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:15:9-35
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:18:9-35
 	android:label
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:13:9-41
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:16:9-41
 	android:roundIcon
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:14:9-54
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:17:9-54
 	android:icon
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:12:9-43
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:15:9-43
 	android:allowBackup
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:11:9-35
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:16:9-40
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:19:9-40
 activity#org.team1257.deepspacescouting.MainActivity
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:17:9-25:20
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:20:9-28:20
 	android:screenOrientation
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:20:13-49
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:23:13-49
 	android:label
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:19:13-45
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:22:13-45
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:18:13-41
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:21:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:21:13-24:29
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:24:13-27:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:25:17-69
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:25:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:26:17-77
 	android:name
-		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml:26:27-74
 uses-sdk
 INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\harsh\AndroidStudioProjects\DeepSpaceScouting\app\src\main\AndroidManifest.xml
@@ -142,6 +157,8 @@ MERGED from [me.dm7.barcodescanner:core:1.9.8] C:\Users\harsh\.gradle\caches\tra
 MERGED from [me.dm7.barcodescanner:core:1.9.8] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\core-1.9.8.aar\5cebe218813fc1f6fa9f34e2bff0fc86\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\2f9d75b49a79a79d548e4159d0df46a4\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\2f9d75b49a79a79d548e4159d0df46a4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.volley:volley:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\260313027d50eb133d44126636d95827\AndroidManifest.xml:7:5-43
+MERGED from [com.android.volley:volley:1.1.1] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\volley-1.1.1.aar\260313027d50eb133d44126636d95827\AndroidManifest.xml:7:5-43
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\65286069a4598f5bc64f4171013180c0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\65286069a4598f5bc64f4171013180c0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\harsh\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\79b0e2b932dc33f7e8b8012176df9802\AndroidManifest.xml:20:5-44
